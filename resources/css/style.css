@@ -1,0 +1,105 @@
+/* Reset básico para evitar problemas de margens e paddings inesperados */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Para garantir que o layout seja bem comportado em todas as telas */
+html {
+  font-size: 100%; /* Usar 100% de base para font-size */
+  scroll-behavior: smooth; /* Rolagem suave */
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;  /* Limitar o conteúdo para telas grandes */
+  margin: 0 auto;
+  padding: 15px;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-toggler {
+  display: none; /* Esconde o ícone hambúrguer em telas grandes */
+}
+
+.js--main-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.js--main-nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 15px;
+  font-size: 16px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Para telas pequenas (mobile-first) */
+@media (max-width: 768px) {
+  .js--main-nav {
+    display: none;  /* Esconde o menu em telas pequenas */
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar-toggler {
+    display: block;  /* Mostra o ícone hambúrguer em telas pequenas */
+    background-color: #F1C40F;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .navbar-toggler.open {
+    background-color: #e67e22;
+  }
+
+  .js--main-nav.show {
+    display: flex; /* Exibe o menu quando o hambúrguer é clicado */
+  }
+}
+
+/* Para telas médias (tablet) */
+@media (max-width: 992px) {
+  .container {
+    padding: 10px;  /* Menos espaçamento em telas médias */
+  }
+}
+
+/* Para telas grandes */
+@media (min-width: 992px) {
+  .navbar-toggler {
+    display: none; /* Esconde o ícone do hambúrguer em telas grandes */
+  }
+
+  .js--main-nav {
+    display: flex;  /* O menu será exibido horizontalmente */
+  }
+}
