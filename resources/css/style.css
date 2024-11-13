@@ -32,6 +32,12 @@ header {
   padding: 10px 0;
 }
 
+/* CSS para ajustar o tamanho da imagem */
+.navbar-brand img {
+  height: 80px;  /* Ajuste conforme necessário */
+  width: auto;   /* Mantém a proporção da imagem */
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -52,6 +58,12 @@ header {
   text-decoration: none;
   padding: 8px 15px;
   font-size: 16px;
+}
+
+#carouselExample .carousel-item img {
+  max-height: 400px;  /* Ajuste conforme necessário */
+  object-fit: cover;  /* Garante que a imagem cubra o espaço sem distorcer */
+  width: 100%;  /* Garante que a largura da imagem ocupe todo o contêiner */
 }
 
 footer {
@@ -77,6 +89,10 @@ footer {
     cursor: pointer;
   }
 
+  .navbar-brand img {
+    height: 80px;  /* Ajusta para telas menores */
+}
+
   .navbar-toggler.open {
     background-color: #e67e22;
   }
@@ -85,6 +101,32 @@ footer {
     display: flex; /* Exibe o menu quando o hambúrguer é clicado */
   }
 }
+
+/* Estilo para o botão */
+.btn-full {
+  color: #ffcc00 !important;  /* Texto amarelo */
+  background-color: #333333 !important; /* Fundo cinza escuro */
+  border: 2px solid #ffcc00 !important; /* Borda amarela */
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  font-weight: bold; /* Deixar o texto em negrito */
+  text-decoration: none; /* Remove o sublinhado */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: all 0.3s ease; /* Transição suave */
+}
+
+/* Efeito quando o mouse passa sobre o botão (hover) */
+.btn-full:hover {
+  background-color: #ffcc00 !important; /* Fundo amarelo */
+  color: #ffffff !important;  /* Texto branco */
+  border-color: #ffcc00 !important; /* Mantém a borda amarela */
+}
+
+/* Ajuste para quando o botão for clicado (ativo) */
+.btn-full:active {
+  background-color: #e6b800 !important; /* Cor mais suave de amarelo para quando o botão é pressionado */
+  color: #fff !important;
+}
+
 
 /* Para telas médias (tablet) */
 @media (max-width: 992px) {
