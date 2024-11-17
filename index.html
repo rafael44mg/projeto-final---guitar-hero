@@ -106,18 +106,71 @@
             <div class="container">
                 <h2>Assine nossa Newsletter</h2>
                 <p>Fique por dentro das novidades e promoções exclusivas.</p>
-                <form>
-                    <input type="text" placeholder="Seu nome" required>
-                    <input type="email" placeholder="Seu e-mail" required>
-                    <input type="tel" placeholder="Seu telefone" required>
-                    <select required>
+                <form id="form-contato" onsubmit="return validarFormulario()">
+                    <input type="text" id="nome" placeholder="Seu nome" required>
+                    <input type="email" id="email" placeholder="Seu e-mail" required>
+                    <input type="tel" id="telefone" placeholder="Seu telefone" required>
+                    <select id="interesse" required>
                         <option value="">Interesse em</option>
                         <option value="guitarras">Guitarras</option>
                         <option value="violao">Violões</option>
                         <option value="amplificadores">Amplificadores</option>
                     </select>
+                    <input type="text" id="endereco" placeholder="Seu endereço" required>
+                    <textarea id="mensagem" placeholder="Deixe sua mensagem" required></textarea>
                     <button type="submit" class="btn">Assinar</button>
                 </form>
+                
+                <script>
+                    function validarFormulario() {
+                        // Obter os valores dos campos
+                        let nome = document.getElementById('nome').value.trim();
+                        let email = document.getElementById('email').value.trim();
+                        let telefone = document.getElementById('telefone').value.trim();
+                        let interesse = document.getElementById('interesse').value.trim();
+                        let endereco = document.getElementById('endereco').value.trim();
+                        let mensagem = document.getElementById('mensagem').value.trim();
+                
+                        // Validação simples dos campos obrigatórios
+                        if (nome === '' || email === '' || telefone === '' || interesse === '' || endereco === '' || mensagem === '') {
+                            alert('Por favor, preencha todos os campos obrigatórios!');
+                            return false; // Impede o envio do formulário
+                        }
+                
+                        // Validação do e-mail (simples)
+                        let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                        if (!regexEmail.test(email)) {
+                            alert('Por favor, insira um e-mail válido.');
+                            return false;
+                        }
+                
+                        // Validação de telefone (apenas números)
+                        let regexTelefone = /^[0-9]{10,11}$/;
+                        if (!regexTelefone.test(telefone)) {
+                            alert('Por favor, insira um telefone válido (apenas números).');
+                            return false;
+                        }
+                
+                        // Evitar XSS (Cross-Site Scripting) - Sanitizando os dados do formulário
+                        nome = sanitizeInput(nome);
+                        email = sanitizeInput(email);
+                        telefone = sanitizeInput(telefone);
+                        endereco = sanitizeInput(endereco);
+                        mensagem = sanitizeInput(mensagem);
+                
+                        // Agora o formulário pode ser enviado
+                        alert('Formulário enviado com sucesso!');
+                        return true;
+                    }
+                
+                    // Função para remover caracteres maliciosos (evitar XSS)
+                    function sanitizeInput(input) {
+                        // Remover qualquer código HTML potencialmente perigoso
+                        let div = document.createElement('div');
+                        div.appendChild(document.createTextNode(input));
+                        return div.innerHTML; // Retorna o valor sanitizado
+                    }
+                </script>                                
             </div>
         </section>
     </main>

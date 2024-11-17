@@ -13,6 +13,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.4/ionicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <style>
+        .section-information {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+        }
+        .hero-text-box h1 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+        .form-label {
+            font-weight: 600;
+        }
+        .form-control {
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .btn-submit {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 12px 20px;
+            border: none;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+            transition: background-color 0.3s ease;
+        }
+        .file-input-container {
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #ddd;
+        }
+        .file-input-container label {
+            cursor: pointer;
+        }
+        .file-input-container input[type="file"] {
+            display: none;
+        }
+        .file-input-container img {
+            width: 150px;
+            height: auto;
+            margin-top: 1rem;
+        }
+        .file-input-container .file-name {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -47,28 +98,62 @@
         <section id="venda-troca" class="section-information">
             <div class="container">
                 <h2>Formulário de Venda/Troca/Consignação</h2>
-                <form action="#" method="post">
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Seu Nome</label>
-                        <input type="text" class="form-control" id="nome" required>
+                <form id="form-venda" onsubmit="return validarFormulario()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nome" class="form-label">Seu Nome</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email" class="form-label">Seu E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Seu E-mail</label>
-                        <input type="email" class="form-control" id="email" required>
-                    </div>
-                    <div class="mb-3">
+
+                    <div class="form-group">
                         <label for="telefone" class="form-label">Telefone</label>
-                        <input type="tel" class="form-control" id="telefone" required>
+                        <input type="tel" class="form-control" id="telefone" name="telefone" required>
                     </div>
-                    <div class="mb-3">
+
+                    <div class="form-group">
                         <label for="instrumento" class="form-label">Instrumento</label>
-                        <input type="text" class="form-control" id="instrumento" required>
+                        <input type="text" class="form-control" id="instrumento" name="instrumento" required>
                     </div>
-                    <div class="mb-3">
+
+                    <div class="form-group">
                         <label for="descricao" class="form-label">Descrição do Instrumento</label>
-                        <textarea class="form-control" id="descricao" rows="4" required></textarea>
+                        <textarea class="form-control" id="descricao" name="descricao" rows="4" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
+
+                    <div class="form-group">
+                        <label for="estado" class="form-label">Estado do Instrumento</label>
+                        <select class="form-control" id="estado" name="estado" required>
+                            <option value="novo">Novo</option>
+                            <option value="usado">Usado</option>
+                            <option value="antigo">Antigo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo-negociacao" class="form-label">Tipo de Negociação</label>
+                        <select class="form-control" id="tipo-negociacao" name="tipo-negociacao" required>
+                            <option value="venda">Venda</option>
+                            <option value="troca">Troca</option>
+                            <option value="consignado">Consignado</option>
+                        </select>
+                    </div>
+
+                    <div class="file-input-container">
+                        <label for="fotos">Envie Fotos do Instrumento (opcional)</label>
+                        <input type="file" class="form-control" id="fotos" name="fotos" accept="image/*" multiple>
+                        <div id="file-info"></div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Solicitação</button>
                 </form>
             </div>
         </section>
@@ -101,6 +186,63 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/js/script.js"></script>
+    <script>
+        // Validação do formulário
+        function validarFormulario() {
+            let nome = document.getElementById('nome').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let telefone = document.getElementById('telefone').value.trim();
+            let instrumento = document.getElementById('instrumento').value.trim();
+            let descricao = document.getElementById('descricao').value.trim();
+
+            // Validação dos campos obrigatórios
+            if (nome === '' || email === '' || telefone === '' || instrumento === '' || descricao === '') {
+                alert('Por favor, preencha todos os campos obrigatórios!');
+                return false;
+            }
+
+            // Validação do e-mail
+            let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!regexEmail.test(email)) {
+                alert('Por favor, insira um e-mail válido.');
+                return false;
+            }
+
+            // Validação de telefone
+            let regexTelefone = /^[0-9]{10,11}$/;
+            if (!regexTelefone.test(telefone)) {
+                alert('Por favor, insira um telefone válido (apenas números).');
+                return false;
+            }
+
+            // Sanitização dos dados
+            nome = sanitizeInput(nome);
+            email = sanitizeInput(email);
+            telefone = sanitizeInput(telefone);
+            instrumento = sanitizeInput(instrumento);
+            descricao = sanitizeInput(descricao);
+
+            // Formulário válido
+            alert('Formulário enviado com sucesso!');
+            return true;
+        }
+
+        // Função para sanitizar entradas e evitar XSS
+        function sanitizeInput(input) {
+            let div = document.createElement('div');
+            div.appendChild(document.createTextNode(input));
+            return div.innerHTML; // Retorna o valor sanitizado
+        }
+
+        // Mostrar nomes dos arquivos selecionados
+        document.getElementById("fotos").addEventListener("change", function() {
+            let fileList = this.files;
+            let fileInfo = document.getElementById("file-info");
+            fileInfo.innerHTML = "";
+            for (let i = 0; i < fileList.length; i++) {
+                fileInfo.innerHTML += `<p class="file-name">${fileList[i].name}</p>`;
+            }
+        });
+    </script>
 </body>
 </html>
