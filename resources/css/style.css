@@ -27,9 +27,12 @@ body {
 }
 
 header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.7)),
+    url(img/headerbackground.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 
 /* CSS para ajustar o tamanho da imagem */
