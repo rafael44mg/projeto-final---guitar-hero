@@ -69,19 +69,96 @@ header {
   width: 100%;  /* Garante que a largura da imagem ocupe todo o contêiner */
 }
 
+/* Rodapé */
 footer {
   background-color: #333;
   color: #fff;
+  padding: 40px 15px;  /* Adicionando padding para as laterais do rodapé */
+  text-align: center;  /* Centraliza o texto no rodapé */
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px 15px;  /* Reduzimos o padding das laterais para centralizar */
+  border-bottom: 1px solid #444;
+}
+
+.footer-nav,
+.social-nav {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  justify-content: center; /* Centraliza os itens das listas */
+}
+
+.footer-nav li,
+.social-nav li {
+  display: inline-block;
+}
+
+.footer-nav a,
+.social-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover,
+.social-nav a:hover {
+  color: #f1c40f;
+}
+
+/* Adicionando mapa e informações do rodapé */
+.footer-location,
+.footer-hours,
+.footer-contact,
+.footer-follow {
+  margin-top: 20px;
+  text-align: center;  /* Centraliza o texto nestes elementos */
+}
+
+.footer-location iframe {
+  width: 100%;
+  max-width: 800px;  /* Limita a largura do iframe para não ficar muito largo */
+  height: 250px;
+  border: none;
+  margin: 0 auto;  /* Centraliza o mapa */
+}
+
+.footer-location h3,
+.footer-hours h3,
+.footer-contact h3,
+.footer-follow h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
   text-align: center;
-  padding: 20px;
+  padding: 20px 15px;
+  background-color: #222;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  color: #ccc;
 }
 
 /* Para telas pequenas (mobile-first) */
 @media (max-width: 768px) {
-  .js--main-nav {
-    display: none;  /* Esconde o menu em telas pequenas */
+  .footer-top {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-nav,
+  .social-nav {
     gap: 10px;
+    justify-content: center; /* Centraliza os itens das listas */
   }
 
   .navbar-toggler {
@@ -94,7 +171,7 @@ footer {
 
   .navbar-brand img {
     height: 80px;  /* Ajusta para telas menores */
-}
+  }
 
   .navbar-toggler.open {
     background-color: #e67e22;
@@ -103,48 +180,41 @@ footer {
   .js--main-nav.show {
     display: flex; /* Exibe o menu quando o hambúrguer é clicado */
   }
-}
 
-/* Estilo para o botão */
-.btn-full {
-  color: #ffcc00 !important;  /* Texto amarelo */
-  background-color: #333333 !important; /* Fundo cinza escuro */
-  border: 2px solid #ffcc00 !important; /* Borda amarela */
-  padding: 10px 20px; /* Espaçamento interno do botão */
-  font-weight: bold; /* Deixar o texto em negrito */
-  text-decoration: none; /* Remove o sublinhado */
-  border-radius: 5px; /* Bordas arredondadas */
-  transition: all 0.3s ease; /* Transição suave */
-}
+  /* Ajustando o rodapé para tela pequena */
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-/* Efeito quando o mouse passa sobre o botão (hover) */
-.btn-full:hover {
-  background-color: #ffcc00 !important; /* Fundo amarelo */
-  color: #ffffff !important;  /* Texto branco */
-  border-color: #ffcc00 !important; /* Mantém a borda amarela */
+  .footer-nav,
+  .social-nav {
+    gap: 10px;
+    justify-content: center; /* Centraliza os itens das listas */
+  }
 }
-
-/* Ajuste para quando o botão for clicado (ativo) */
-.btn-full:active {
-  background-color: #e6b800 !important; /* Cor mais suave de amarelo para quando o botão é pressionado */
-  color: #fff !important;
-}
-
 
 /* Para telas médias (tablet) */
 @media (max-width: 992px) {
-  .container {
-    padding: 10px;  /* Menos espaçamento em telas médias */
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-location iframe {
+    height: 200px;
   }
 }
 
 /* Para telas grandes */
 @media (min-width: 992px) {
-  .navbar-toggler {
-    display: none; /* Esconde o ícone do hambúrguer em telas grandes */
+  .footer-top {
+    flex-direction: row;
+    justify-content: space-between;
   }
 
-  .js--main-nav {
-    display: flex;  /* O menu será exibido horizontalmente */
+  .footer-location iframe {
+    height: 250px;
   }
 }

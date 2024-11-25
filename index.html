@@ -27,6 +27,9 @@
 
     <!-- Favicon -->
     <link rel="icon" href="resources/img/logo1.jpg" type="image/x-icon">
+
+    <!-- Link para Google Analytics (se necessário) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-X"></script> -->
 </head>
 <body>
 
@@ -35,7 +38,6 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <!-- Substitua pelo caminho da sua imagem -->
                     <img src="resources/img/logo1.jpg" alt="Logo Guitar Hero" style="height: 100px; width: auto;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
@@ -62,6 +64,7 @@
             <a href="#produtos" class="btn btn-full">Ver Produtos</a>
         </div>
     </header>    
+
     <!-- Novidades -->
     <main>
         <section id="novidades" class="section-information">
@@ -120,57 +123,6 @@
                     <textarea id="mensagem" placeholder="Deixe sua mensagem" required></textarea>
                     <button type="submit" class="btn">Assinar</button>
                 </form>
-                
-                <script>
-                    function validarFormulario() {
-                        // Obter os valores dos campos
-                        let nome = document.getElementById('nome').value.trim();
-                        let email = document.getElementById('email').value.trim();
-                        let telefone = document.getElementById('telefone').value.trim();
-                        let interesse = document.getElementById('interesse').value.trim();
-                        let endereco = document.getElementById('endereco').value.trim();
-                        let mensagem = document.getElementById('mensagem').value.trim();
-                
-                        // Validação simples dos campos obrigatórios
-                        if (nome === '' || email === '' || telefone === '' || interesse === '' || endereco === '' || mensagem === '') {
-                            alert('Por favor, preencha todos os campos obrigatórios!');
-                            return false; // Impede o envio do formulário
-                        }
-                
-                        // Validação do e-mail (simples)
-                        let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                        if (!regexEmail.test(email)) {
-                            alert('Por favor, insira um e-mail válido.');
-                            return false;
-                        }
-                
-                        // Validação de telefone (apenas números)
-                        let regexTelefone = /^[0-9]{10,11}$/;
-                        if (!regexTelefone.test(telefone)) {
-                            alert('Por favor, insira um telefone válido (apenas números).');
-                            return false;
-                        }
-                
-                        // Evitar XSS (Cross-Site Scripting) - Sanitizando os dados do formulário
-                        nome = sanitizeInput(nome);
-                        email = sanitizeInput(email);
-                        telefone = sanitizeInput(telefone);
-                        endereco = sanitizeInput(endereco);
-                        mensagem = sanitizeInput(mensagem);
-                
-                        // Agora o formulário pode ser enviado
-                        alert('Formulário enviado com sucesso!');
-                        return true;
-                    }
-                
-                    // Função para remover caracteres maliciosos (evitar XSS)
-                    function sanitizeInput(input) {
-                        // Remover qualquer código HTML potencialmente perigoso
-                        let div = document.createElement('div');
-                        div.appendChild(document.createTextNode(input));
-                        return div.innerHTML; // Retorna o valor sanitizado
-                    }
-                </script>                                
             </div>
         </section>
     </main>
@@ -178,24 +130,42 @@
     <!-- Rodapé -->
     <footer>
         <div class="footer-top">
-            <div class="container">
-                <nav class="footer-nav">
-                    <ul>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="politica.html">Política de Privacidade</a></li>
-                        <li><a href="termos.html">Termos de Serviço</a></li>
-                    </ul>
-                </nav>
-                <nav class="social-nav">
-                    <ul>
-                        <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a></li>
-                        <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
-                    </ul>
-                </nav>
+            <!-- Seção de Localização -->
+            <div class="footer-location">
+                <h3>Onde Estamos</h3>
+                <!-- Substitua o link do Google Maps pela sua localização -->
+                <iframe src="https://www.google.com/maps/embed?pb=...seulink..." loading="lazy"></iframe>
+            </div>
+
+            <!-- Seção de Horários -->
+            <div class="footer-hours">
+                <h3>Horário de Funcionamento</h3>
+                <ul>
+                    <li>Segunda - Sexta: 9:00 - 18:00</li>
+                    <li>Sábado: 10:00 - 16:00</li>
+                    <li>Domingo: Fechado</li>
+                </ul>
+            </div>
+
+            <!-- Seção de Contato -->
+            <div class="footer-contact">
+                <h3>Contato</h3>
+                <p>Email: contato@guitarhero.com</p>
+                <p>Telefone: (11) 99999-9999</p>
+            </div>
+
+            <!-- Seção de Redes Sociais -->
+            <div class="footer-follow">
+                <h3>Nos Siga</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom text-center">
+        
+        <div class="footer-bottom">
             <p>&copy; 2024 Guitar Hero - Todos os direitos reservados</p>
         </div>
     </footer>
