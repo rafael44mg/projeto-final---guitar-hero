@@ -1,0 +1,94 @@
+/* Reset básico para garantir um visual limpo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Definindo a fonte e o estilo global */
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Estilos para o header */
+header {
+    background: url('../img/guitar-background.jpg') no-repeat center center/cover;
+    padding: 80px 0;
+    text-align: center;
+    color: white;
+}
+
+header .hero-text-box h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+header .hero-text-box p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Estilos da vitrine de guitarras */
+#produtos {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+#produtos h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.produto {
+    text-align: center;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.produto:hover {
+    transform: translateY(-10px);
+}
+
+.produto img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.produto h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.produto .price {
+    color: #e74c3c;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Estilos do modal */
+.modal-content {
+    border-radius: 10px;
+    border: none;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #000;
+    border-radius: 50%;
+}
