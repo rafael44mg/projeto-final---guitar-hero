@@ -35,6 +35,49 @@ header {
   height: 100vh;
 }
 
+/* Hero Text Box */
+.hero-text-box {
+  text-align: center;
+  color: white; /* Cor do texto */
+  padding-top: 80px; /* Espaçamento do topo da tela até o conteúdo (ajuste conforme necessário) */
+  margin-top: 40px;  /* Distância do topo da página até o Hero Box */
+  background: rgba(0, 0, 0, 0.5); /* Cor de fundo semitransparente para o texto se destacar */
+}
+
+.hero-text-box h1 {
+  position: relative; /* Torna os elementos posicionados em relação ao seu espaço normal */
+  top: -20px; /* Ajusta para mover para cima */
+  font-size: 3rem; /* Tamanho grande para o título */
+  margin-bottom: 30px; /* Espaço entre o título e o parágrafo */
+  font-weight: bold;  /* Garantir que o título fique mais destacado */
+}
+
+.hero-text-box p {
+  position: relative; /* Torna os elementos posicionados em relação ao seu espaço normal */
+  top: -20px; /* Ajusta para mover para cima */
+  font-size: 1.25rem; /* Tamanho um pouco maior para o texto do parágrafo */
+  margin-bottom: 40px; /* Distância entre o parágrafo e o botão */
+  max-width: 800px; /* Largura máxima do texto para que ele não se espalhe demais */
+  margin-left: auto;
+  margin-right: auto; /* Centralizar o texto */
+}
+
+.hero-text-box .btn-full {
+  position: relative; /* Torna o botão posicionado em relação ao seu espaço normal */
+  top: -20px; /* Ajusta a posição para cima (valor negativo) */
+  background-color: #f1c40f; /* Cor de fundo do botão */
+  color: black;  /* Cor do texto do botão */
+  padding: 12px 30px; /* Espaçamento do botão */
+  font-size: 1.1rem;  /* Tamanho maior para o texto do botão */
+  text-decoration: none;
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.3s ease;
+}
+
+.hero-text-box .btn-full:hover {
+  background-color: #e67e22; /* Cor do botão quando passa o mouse */
+}
+
 /* CSS para ajustar o tamanho da imagem */
 .navbar-brand img {
   height: 80px;  /* Ajuste conforme necessário */
@@ -60,7 +103,7 @@ header {
   color: #fff;
   text-decoration: none;
   padding: 8px 15px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 #carouselExample .carousel-item img {
@@ -79,76 +122,51 @@ footer {
 
 .footer-top {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: flex-start;  /* Alinha as seções à esquerda */
+  gap: 30px;  /* Espaço entre as seções */
   padding: 20px 15px;  /* Reduzimos o padding das laterais para centralizar */
   border-bottom: 1px solid #444;
 }
 
-.footer-nav,
-.social-nav {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  justify-content: center; /* Centraliza os itens das listas */
+.footer-hours,
+.footer-contact,
+.footer-follow {
+  text-align: left;  /* Alinha o texto dentro de cada seção à esquerda */
+  list-style: none;  /* Remove os marcadores das listas */
+  margin: 0;  /* Remove margens externas para não criar espaçamento desnecessário */
+  padding: 0;  /* Remove padding extra */
+  width: 30%;  /* Define uma largura fixa para cada seção (se necessário ajuste) */
 }
 
-.footer-nav li,
-.social-nav li {
-  display: inline-block;
+.footer-hours ul,
+.footer-follow ul {
+  list-style: none;  /* Remove os marcadores das listas */
+  padding: 0;  /* Remove o padding extra */
 }
 
-.footer-nav a,
-.social-nav a {
+.footer-hours li,
+.footer-follow li {
+  display: block;  /* Garante que cada item da lista ocupe uma linha separada */
+  margin: 5px 0;  /* Margem entre os itens */
+}
+
+.footer-contact p {
+  margin: 5px 0;  /* Adiciona margens aos parágrafos do contato */
+}
+
+.footer-follow a {
   color: #fff;
-  text-decoration: none;
+  text-decoration: none;  /* Remove o sublinhado */
   font-size: 16px;
   transition: color 0.3s ease;
 }
 
-.footer-nav a:hover,
-.social-nav a:hover {
+.footer-follow a:hover {
   color: #f1c40f;
 }
 
-/* Adicionando mapa e informações do rodapé */
-.footer-location,
-.footer-hours,
-.footer-contact,
-.footer-follow {
-  margin-top: 20px;
-  text-align: center;  /* Centraliza o texto nestes elementos */
-}
-
-.footer-location iframe {
-  width: 100%;
-  max-width: 800px;  /* Limita a largura do iframe para não ficar muito largo */
-  height: 250px;
-  border: none;
-  margin: 0 auto;  /* Centraliza o mapa */
-}
-
-.footer-location h3,
-.footer-hours h3,
-.footer-contact h3,
-.footer-follow h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.footer-bottom {
-  text-align: center;
-  padding: 20px 15px;
-  background-color: #222;
-}
-
-.footer-bottom p {
-  font-size: 14px;
-  color: #ccc;
-}
-
 /* Para telas pequenas (mobile-first) */
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .footer-top {
     flex-direction: column;
     align-items: center;
@@ -193,10 +211,23 @@ footer {
     gap: 10px;
     justify-content: center; /* Centraliza os itens das listas */
   }
+
+  /* Ajuste para o Hero Text Box em telas pequenas */
+  .hero-text-box h1 {
+    font-size: 2.5rem; /* Tamanho do título menor para telas pequenas */
+  }
+
+  .hero-text-box p {
+    font-size: 1.1rem; /* Tamanho do texto do parágrafo menor em telas pequenas */
+  }
+
+  .hero-text-box .btn-full {
+    padding: 10px 25px; /* Botão menor em telas pequenas */
+  }
 }
 
 /* Para telas médias (tablet) */
-@media (max-width: 992px) {
+@media only screen and (max-width: 992px) {
   .footer-top {
     flex-direction: column;
     align-items: center;
@@ -208,7 +239,7 @@ footer {
 }
 
 /* Para telas grandes */
-@media (min-width: 992px) {
+@media only screen and (min-width: 992px) {
   .footer-top {
     flex-direction: row;
     justify-content: space-between;
