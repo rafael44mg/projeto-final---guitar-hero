@@ -93,19 +93,19 @@
 }
 
 /* Ajustes para telas menores */
-@media (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
     .produto {
         flex: 0 0 30%; /* 3 colunas em telas de tablet */
     }
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
     .produto {
         flex: 0 0 48%; /* 2 colunas em telas de smartphone */
     }
 }
 
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
     .produto {
         flex: 0 0 100%; /* 1 coluna em telas muito pequenas */
     }
