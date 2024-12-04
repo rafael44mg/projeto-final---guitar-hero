@@ -249,3 +249,40 @@ footer {
     height: 250px;
   }
 }
+
+/* Estilos para o submenu */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.dropdown-menu {
+  display: none; /* Inicialmente o submenu está escondido */
+  position: absolute;
+  min-width: 200px;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 10px 0;
+  border: none;
+}
+
+.dropdown-item {
+  color: #6c757d;
+  text-decoration: none;
+  padding: 5px 15px;
+}
+
+.dropdown-item:hover {
+  color: #007bff;
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+/* Animação para aparecer suavemente */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
