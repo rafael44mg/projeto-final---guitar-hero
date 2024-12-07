@@ -19,6 +19,12 @@
     height: auto;
 }
 
+.produto .imagem-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
 .produto img {
     cursor: pointer;
     width: 100%;
@@ -30,6 +36,7 @@
 .produto img:hover {
     transform: scale(1.1);
 }
+
 
 .produto h3 {
     font-size: 1.2rem;

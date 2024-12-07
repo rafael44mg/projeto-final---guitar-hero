@@ -1,4 +1,4 @@
-/* Reset básico para evitar problemas de margens e paddings inesperados */
+/* Reset básico */
 *,
 *::before,
 *::after {
@@ -7,9 +7,9 @@
   box-sizing: border-box;
 }
 
-/* Para garantir que o layout seja bem comportado em todas as telas */
+/* Configurações gerais */
 html {
-  font-size: 100%; /* Usar 100% de base para font-size */
+  font-size: 100%; /* Base para font-size */
   scroll-behavior: smooth; /* Rolagem suave */
 }
 
@@ -17,15 +17,30 @@ body {
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
   background-color: #f4f4f4;
+  color: #333; /* Cor padrão do texto */
+  font-size: 1rem; /* Tamanho de fonte padrão */
+  margin: 0; /* Remover qualquer margem extra */
 }
 
+/* Container */
 .container {
   width: 100%;
-  max-width: 1200px;  /* Limitar o conteúdo para telas grandes */
+  max-width: 1200px; /* Limite máximo da largura */
   margin: 0 auto;
   padding: 15px;
 }
 
+/* Cores principais */
+:root {
+  --primary-color: #f1c40f;
+  --secondary-color: #e67e22;
+  --text-color: #333;
+  --bg-dark: #333;
+  --bg-light: #f4f4f4;
+  --hover-color: #f1c40f;
+}
+
+/* Cabeçalho */
 header {
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.7)),
@@ -33,71 +48,134 @@ header {
   background-size: cover;
   background-position: center;
   height: 100vh;
+  position: relative; /* Permite manipular a posição dos elementos dentro do header */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10; /* Garante que o conteúdo do header tenha prioridade sobre o menu */
 }
 
-/* Hero Text Box */
 .hero-text-box {
   text-align: center;
-  color: white; /* Cor do texto */
-  padding-top: 80px; /* Espaçamento do topo da tela até o conteúdo (ajuste conforme necessário) */
-  margin-top: 40px;  /* Distância do topo da página até o Hero Box */
-  background: rgba(0, 0, 0, 0.5); /* Cor de fundo semitransparente para o texto se destacar */
+  color: white;
+  padding-top: 80px;
+  background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  z-index: 5; /* Garante que o texto fique acima do fundo do header */
 }
 
 .hero-text-box h1 {
-  position: relative; /* Torna os elementos posicionados em relação ao seu espaço normal */
-  top: -20px; /* Ajusta para mover para cima */
-  font-size: 3rem; /* Tamanho grande para o título */
-  margin-bottom: 30px; /* Espaço entre o título e o parágrafo */
-  font-weight: bold;  /* Garantir que o título fique mais destacado */
+  font-size: 3rem;
+  margin-bottom: 30px;
+  font-weight: bold;
 }
 
 .hero-text-box p {
-  position: relative; /* Torna os elementos posicionados em relação ao seu espaço normal */
-  top: -20px; /* Ajusta para mover para cima */
-  font-size: 1.25rem; /* Tamanho um pouco maior para o texto do parágrafo */
-  margin-bottom: 40px; /* Distância entre o parágrafo e o botão */
-  max-width: 800px; /* Largura máxima do texto para que ele não se espalhe demais */
+  font-size: 1.25rem;
+  margin-bottom: 40px;
+  max-width: 800px;
   margin-left: auto;
-  margin-right: auto; /* Centralizar o texto */
+  margin-right: auto;
 }
 
 .hero-text-box .btn-full {
-  position: relative; /* Torna o botão posicionado em relação ao seu espaço normal */
-  top: -20px; /* Ajusta a posição para cima (valor negativo) */
-  background-color: #f1c40f; /* Cor de fundo do botão */
-  color: black;  /* Cor do texto do botão */
-  padding: 12px 30px; /* Espaçamento do botão */
-  font-size: 1.1rem;  /* Tamanho maior para o texto do botão */
+  background-color: var(--primary-color);
+  color: black;
+  padding: 12px 30px;
+  font-size: 1.1rem;
   text-decoration: none;
-  border-radius: 5px; /* Bordas arredondadas */
+  border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
 .hero-text-box .btn-full:hover {
-  background-color: #e67e22; /* Cor do botão quando passa o mouse */
+  background-color: var(--secondary-color);
 }
 
-/* CSS para ajustar o tamanho da imagem */
-.navbar-brand img {
-  height: 80px;  /* Ajuste conforme necessário */
-  width: auto;   /* Mantém a proporção da imagem */
-}
-
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100; /* Garante que o menu fique sobre o conteúdo */
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo semitransparente para o menu */
+}
+
+#navbarNav {
+  display: flex;
+  overflow-x: hidden;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  position: static; /* Remover qualquer posição flutuante ou fixa */
+}
+
+/* Menu oculto em telas pequenas */
+#navbarNav:not(.show) {
+  display: none;
+}
+
+.navbar .nav-link {
+  display: block;
+  color: white;
+  z-index: 1100;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;  /* Limitar a largura máxima para manter o layout */
+  padding: 0 20px;    /* Ajuste o padding conforme necessário */
+}
+
+.navbar .nav-link .fas {
+  font-size: 30px; /* Tamanho do ícone */
+  color: white;    /* Cor do ícone */
+}
+
+.navbar-brand img {
+  height: 80px;
+  width: auto;
+  z-index: 1100; /* Garante que o logo fique acima do menu */
 }
 
 .navbar-toggler {
-  display: none; /* Esconde o ícone hambúrguer em telas grandes */
+  display: block; /* Exibe o ícone de hambúrguer em telas pequenas */
+  background-color: var(--primary-color);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .js--main-nav {
-  display: flex;
-  gap: 20px;
+  display: none; /* Oculto por padrão */
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro */
+  z-index: 500; /* z-index menor que o hambúrguer */
 }
+
+.js--main-nav.show {
+  display: flex; /* Exibe o menu ao abrir */
+  flex-direction: column; /* Menu em coluna para telas pequenas */
+}
+
+
 
 .js--main-nav a {
   color: #fff;
@@ -106,147 +184,220 @@ header {
   font-size: 20px;
 }
 
+/* Carrossel de Produtos */
 #carouselExample .carousel-item img {
-  max-height: 400px;  /* Ajuste conforme necessário */
-  object-fit: cover;  /* Garante que a imagem cubra o espaço sem distorcer */
-  width: 100%;  /* Garante que a largura da imagem ocupe todo o contêiner */
+  max-height: 400px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Estilo do botão de newsletter */
+#newsletter .btn-full {
+  background-color: transparent; /* Fundo transparente */
+  color: var(--primary-color); /* Cor do texto */
+  padding: 12px 30px;
+  font-size: 1.2rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  text-decoration: none; /* Remove sublinhado */
+  border: 2px solid var(--primary-color); /* Adiciona um contorno */
+  border-radius: 5px; /* Borda arredondada */
+  transition: all 0.3s ease; /* Transição suave para efeitos */
+}
+
+#newsletter .btn-full:hover {
+  background-color: var(--primary-color); /* Cor de fundo ao passar o mouse */
+  color: white; /* Cor do texto ao passar o mouse */
+  border-color: var(--primary-color); /* Garante que o contorno mude de cor */
+}
+
+#newsletter .btn-full:focus {
+  outline: none; /* Remove o contorno padrão ao clicar */
+  box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.5); /* Efeito de foco (borda amarela clara) */
 }
 
 /* Rodapé */
 footer {
-  background-color: #333;
-  color: #fff;
-  padding: 40px 15px;  /* Adicionando padding para as laterais do rodapé */
-  text-align: center;  /* Centraliza o texto no rodapé */
+  background-color: var(--bg-dark);
+  color: white;
+  padding: 40px 15px;
+  text-align: left; /* Alinha o texto à esquerda no rodapé */
 }
 
+/* Barra superior do rodapé */
 .footer-top {
   display: flex;
-  justify-content: flex-start;  /* Alinha as seções à esquerda */
-  gap: 30px;  /* Espaço entre as seções */
-  padding: 20px 15px;  /* Reduzimos o padding das laterais para centralizar */
+  justify-content: space-between;
+  gap: 30px;
+  padding: 20px 15px;
   border-bottom: 1px solid #444;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo */
 }
 
+.footer-top > div { 
+  flex: 1; 
+  min-width: 200px; 
+  margin: 10px; 
+}
+
+/* Alinhamento e estilo dos itens do rodapé */
 .footer-hours,
 .footer-contact,
-.footer-follow {
-  text-align: left;  /* Alinha o texto dentro de cada seção à esquerda */
-  list-style: none;  /* Remove os marcadores das listas */
-  margin: 0;  /* Remove margens externas para não criar espaçamento desnecessário */
-  padding: 0;  /* Remove padding extra */
-  width: 30%;  /* Define uma largura fixa para cada seção (se necessário ajuste) */
+.footer-follow,
+.footer-location {
+  text-align: center;
+  list-style-type: none; /* Remove marcadores */
+  margin: 0; /* Remove qualquer margem extra */
+  padding: 0; /* Remove qualquer padding extra */
+  width: 23%; /* Ajusta a largura dos itens para 23% */
 }
 
-.footer-hours ul,
-.footer-follow ul {
-  list-style: none;  /* Remove os marcadores das listas */
-  padding: 0;  /* Remove o padding extra */
-}
-
+/* Remover pontos ou marcadores indesejados das listas */
 .footer-hours li,
-.footer-follow li {
-  display: block;  /* Garante que cada item da lista ocupe uma linha separada */
-  margin: 5px 0;  /* Margem entre os itens */
+.footer-contact li,
+.footer-follow li,
+.footer-location li {
+  list-style-type: none; /* Remove qualquer marcador */
+  margin-bottom: 10px; /* Espaço entre os itens da lista */
+  text-align: start;
 }
 
-.footer-contact p {
-  margin: 5px 0;  /* Adiciona margens aos parágrafos do contato */
-}
-
+/* Links de redes sociais e outros itens do rodapé */
 .footer-follow a {
   color: #fff;
-  text-decoration: none;  /* Remove o sublinhado */
+  text-decoration: none;
   font-size: 16px;
   transition: color 0.3s ease;
+  display: block; /* Faz os links ocuparem toda a largura */
+  margin-bottom: 5px; /* Espaço entre os links */
 }
 
 .footer-follow a:hover {
-  color: #f1c40f;
+  color: var(--primary-color);
 }
 
-/* Para telas pequenas (mobile-first) */
+/* Localização do mapa no rodapé */
+.footer-location iframe {
+  width: 100%;
+  border: 0;
+}
+
+.footer-bottom {
+  text-align: center;
+}
+
+/* Estilos de mídia */
+/* Rodapé em telas médias-grandes: dois itens por linha */ 
+@media only screen and (max-width: 1200px) { 
+  .footer-top { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+  } 
+}
+
 @media only screen and (max-width: 768px) {
   .footer-top {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-
-  .footer-nav,
-  .social-nav {
-    gap: 10px;
-    justify-content: center; /* Centraliza os itens das listas */
+  .footer-top > div { 
+    flex: initial; 
+    min-width: initial; 
   }
 
   .navbar-toggler {
-    display: block;  /* Mostra o ícone hambúrguer em telas pequenas */
-    background-color: #F1C40F;
+    display: block; /* Exibe o ícone de hambúrguer */
+    background-color: var(--primary-color);
     border: none;
     padding: 10px;
     cursor: pointer;
-  }
-
-  .navbar-brand img {
-    height: 80px;  /* Ajusta para telas menores */
+    z-index: 1000;
   }
 
   .navbar-toggler.open {
-    background-color: #e67e22;
+    background-color: var(--secondary-color);
   }
 
-  .js--main-nav.show {
-    display: flex; /* Exibe o menu quando o hambúrguer é clicado */
-  }
-
-  /* Ajustando o rodapé para tela pequena */
-  .footer-top {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .footer-nav,
-  .social-nav {
-    gap: 10px;
-    justify-content: center; /* Centraliza os itens das listas */
-  }
-
-  /* Ajuste para o Hero Text Box em telas pequenas */
   .hero-text-box h1 {
-    font-size: 2.5rem; /* Tamanho do título menor para telas pequenas */
+    font-size: 2.5rem;
   }
 
   .hero-text-box p {
-    font-size: 1.1rem; /* Tamanho do texto do parágrafo menor em telas pequenas */
+    font-size: 1.1rem;
   }
 
   .hero-text-box .btn-full {
-    padding: 10px 25px; /* Botão menor em telas pequenas */
+    padding: 10px 25px;
   }
-}
 
-/* Para telas médias (tablet) */
-@media only screen and (max-width: 992px) {
-  .footer-top {
+  .js--main-nav {
+    display: none;
     flex-direction: column;
-    align-items: center;
+    gap: 10px;
   }
 
-  .footer-location iframe {
-    height: 200px;
+  .js--main-nav.show {
+    display: flex;
   }
 }
 
-/* Para telas grandes */
-@media only screen and (min-width: 992px) {
-  .footer-top {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+/* Rodapé em telas pequenas: um item por linha */ 
+@media only screen and (max-width: 480px) { 
+  .footer-top { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 10px; 
+  } 
+}
 
-  .footer-location iframe {
-    height: 250px;
+/* Exibir o botão de hambúrguer apenas em telas pequenas */
+@media only screen and (max-width: 768px) {
+  .navbar-toggler {
+    display: block; /* Mostra o botão de hambúrguer */
   }
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100; /* Menor que o logo, mas maior que o menu */
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar .navbar-toggler {
+  display: block; /* Exibe o ícone de hambúrguer */
+  background-color: var(--primary-color);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1100; /* Garante que o botão hambúrguer fique acima do menu */
+}
+
+.js--main-nav {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute; /* Menú em posição absoluta */
+  right: 0;
+  top: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro */
+  z-index: 500; /* Menor que o botão hambúrguer */
+}
+
+.js--main-nav.show {
+  display: flex; /* Exibe o menu */
 }
 
