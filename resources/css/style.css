@@ -107,7 +107,7 @@ header {
 }
 
 #navbarNav {
-  display: flex;
+  display: none;
   overflow-x: hidden;
   width: 100%;
   justify-content: flex-start;
@@ -117,6 +117,10 @@ header {
   padding: 0;
   margin: 0;
   position: static; /* Remover qualquer posição flutuante ou fixa */
+}
+
+#navbarNav.show {
+  display: flex; /* Menu visível quando a classe 'show' for adicionada */
 }
 
 /* Menu oculto em telas pequenas */
@@ -295,7 +299,7 @@ footer {
   } 
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
   .footer-top {
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
@@ -346,18 +350,30 @@ footer {
 }
 
 /* Rodapé em telas pequenas: um item por linha */ 
-@media only screen and (max-width: 480px) { 
+@media only screen and (max-width: 640px) { 
   .footer-top { 
     display: grid; 
     grid-template-columns: 1fr; 
-    gap: 10px; 
+    gap: 10px;
+    justify-items: center; /* Centraliza horizontalmente os itens */
+    align-items: center; /* Centraliza verticalmente os itens, caso necessário */
+    text-align: center; /* Centraliza o texto dentro de cada item */ 
+  }
+
+  #newsletter form {
+    display: flex;
+    flex-direction: column; /* Coloca os itens em coluna (um abaixo do outro) */
+    gap: 10px; /* Espaçamento entre os itens do formulário */
   } 
 }
 
 /* Exibir o botão de hambúrguer apenas em telas pequenas */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
   .navbar-toggler {
     display: block; /* Mostra o botão de hambúrguer */
+  }
+  .js--main-nav.show {
+    display: flex; /* Exibe o menu */
   }
 }
 
@@ -400,4 +416,3 @@ footer {
 .js--main-nav.show {
   display: flex; /* Exibe o menu */
 }
-

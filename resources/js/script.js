@@ -1,43 +1,38 @@
 $(document).ready(function() {
+  // Função para alternar o menu
+  function toggleMenu() {
+    $('.navbar-toggler').toggleClass('open');  // Alterna o ícone do hambúrguer
+    $('#navbarNav').toggleClass('show');  // Alterna a visibilidade do menu
+    $('body').toggleClass('menu-open');  // Alterna o fundo escurecido
+  }
 
-  // Menu Responsivo: Alternar visibilidade do menu em telas pequenas
+  // Quando o botão do menu (hambúrguer) é clicado
   $('.navbar-toggler').on('click', function() {
-    // Alterna a classe para dar feedback visual no botão (abre/fecha o ícone do hambúrguer)
-    $(this).toggleClass('open');
-    
-    // Alterna a classe 'show' no menu, exibindo ou ocultando o menu
-    $('#navbarNav').toggleClass('show');
-    
-    // Adiciona ou remove a classe 'menu-open' do body para controle de fundo
-    $('body').toggleClass('menu-open');
+    toggleMenu();
   });
 
-  // Fechar o menu quando um link do menu for clicado em telas pequenas
+  // Quando um link do menu é clicado em telas pequenas, fecha o menu
   $('.navbar-nav .nav-link').on('click', function() {
-    // Fecha o menu se ele estiver aberto
-    if ($(window).width() <= 992) {
-      $('#navbarNav').removeClass('show');
-      $('body').removeClass('menu-open');
-      $('.navbar-toggler').removeClass('open');
+    if ($(window).width() <= 992) {  // Verifica se está em uma tela pequena
+      $('#navbarNav').removeClass('show');  // Remove a classe 'show' do menu (oculta)
+      $('body').removeClass('menu-open');   // Remove o fundo escurecido
+      $('.navbar-toggler').removeClass('open'); // Garante que o ícone do hambúrguer volte ao estado fechado
     }
   });
 
-  // Menu Responsivo: Exibir ou ocultar o menu conforme o tamanho da tela
+  // Quando a tela é redimensionada
   $(window).on('resize', function() {
-    if ($(window).width() > 992) {
-      // Exibe o menu em telas grandes e remove quaisquer classes adicionais
+    if ($(window).width() > 992) {  // Em telas grandes, mostra o menu
       $('#navbarNav').addClass('show');
-      $('.navbar-toggler').hide();
-      $('body').removeClass('menu-open');
-      $('.navbar-toggler').removeClass('open'); // Garante que o ícone hambúrguer volte ao estado fechado
-    } else {
-      // Oculta o menu em telas pequenas, a menos que ele já esteja aberto
-      if (!$('#navbarNav').hasClass('show')) {
-        $('#navbarNav').removeClass('show');
-      }
-      $('.navbar-toggler').show();
+      $('.navbar-toggler').hide();  // Esconde o ícone de hambúrguer
+      $('body').removeClass('menu-open');  // Remove o fundo escurecido
+      $('.navbar-toggler').removeClass('open');  // Garante que o ícone do hambúrguer volte ao estado fechado
+    } else {  // Em telas pequenas, exibe o botão de hambúrguer
+      $('#navbarNav').removeClass('show');  // Esconde o menu
+      $('.navbar-toggler').show();  // Mostra o ícone do hambúrguer
     }
-  }).trigger('resize'); // Aplica a lógica ao carregar a página
+  }).trigger('resize');  // Aplica a lógica de redimensionamento ao carregar a página
+});
 
   // Vitrine de Produtos - Animação no Hover
   $('.produto').hover(
@@ -70,67 +65,3 @@ $(document).ready(function() {
       alert("Por favor, insira um e-mail válido.");
     }
   });
-
-});
-
-$(document).ready(function() {
-
-  // Menu Responsivo: Alternar visibilidade do menu em telas pequenas
-  $('.navbar-toggler').on('click', function() {
-    // Alterna a classe para dar feedback visual no botão (abre/fecha o ícone do hambúrguer)
-    $(this).toggleClass('open');
-    
-    // Alterna a classe 'show' no menu, exibindo ou ocultando o menu
-    $('#navbarNav').toggleClass('show');
-    
-    // Adiciona ou remove a classe 'menu-open' do body para controle de fundo
-    $('body').toggleClass('menu-open');
-  });
-
-  // Menu Responsivo: Exibir ou ocultar o menu conforme o tamanho da tela
-  $(window).on('resize', function() {
-    if ($(window).width() > 992) {
-      // Exibe o menu em telas grandes e remove quaisquer classes adicionais
-      $('#navbarNav').addClass('show');
-      $('.navbar-toggler').hide();
-      $('body').removeClass('menu-open');
-      $('.navbar-toggler').removeClass('open'); // Garante que o ícone hambúrguer volte ao estado fechado
-    } else {
-      // Oculta o menu em telas pequenas, a menos que ele já esteja aberto
-      if (!$('#navbarNav').hasClass('show')) {
-        $('#navbarNav').removeClass('show');
-      }
-      $('.navbar-toggler').show();
-    }
-  }).trigger('resize'); // Aplica a lógica ao carregar a página
-
-});
-
-$(document).ready(function() {
-  // Alternar visibilidade do menu
-  $('.navbar-toggler').on('click', function() {
-    // Alterna a classe 'show' no menu
-    $('.js--main-nav').toggleClass('show');
-    
-    // Alterna a classe 'open' no botão hambúrguer
-    $(this).toggleClass('open');
-    
-    // Fecha o menu se ele estiver aberto
-    if ($('.js--main-nav').hasClass('show')) {
-      $('body').addClass('menu-open');
-    } else {
-      $('body').removeClass('menu-open');
-    }
-  });
-
-  // Fechar o menu se a tela for redimensionada
-  $(window).on('resize', function() {
-    if ($(window).width() > 992) {
-      $('.js--main-nav').addClass('show');  // Exibe o menu em telas grandes
-      $('.navbar-toggler').hide();  // Esconde o ícone do hambúrguer
-    } else {
-      $('.js--main-nav').removeClass('show');  // Oculta o menu em telas pequenas
-      $('.navbar-toggler').show();  // Exibe o ícone do hambúrguer
-    }
-  }).trigger('resize');  // Aplica a lógica ao carregar a página
-});
